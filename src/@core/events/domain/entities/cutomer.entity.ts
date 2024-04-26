@@ -15,27 +15,36 @@ export class Customer extends AggregateRoot {
   cpf: Cpf;
   name: string;
 
-  constructor(customerProps: CustomerConstructorProps) {
+  constructor(props: CustomerConstructorProps) {
     super();
     this.id =
-      customerProps.id instanceof CustomerId
-        ? customerProps.id
-        : new CustomerId(customerProps.id);
-    this.cpf = customerProps.cpf;
-    this.name = customerProps.name;
+      typeof props.id === 'string'
+        ? new CustomerId(props.id)
+        : props.id ?? new CustomerId();
+    this.cpf = props.cpf;
+    this.name = props.name;
   }
 
   static create(command: { name: string; cpf: string }) {
-    return new Customer({
+    const customer = new Customer({
       name: command.name,
       cpf: new Cpf(command.cpf),
     });
+    // customer.addEvent(
+    //   new CustomerCreated(customer.id, customer.name, customer.cpf),
+    // );
+    return customer;
+  }
+
+  changeName(name: string) {
+    this.name = name;
+    // this.addEvent(new CustomerChangedName(this.id, this.name));
   }
 
   toJSON() {
     return {
-      id: this.id,
-      cpf: this.cpf,
+      id: this.id.value,
+      cpf: this.cpf.value,
       name: this.name,
     };
   }

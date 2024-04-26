@@ -13,7 +13,7 @@ export class Cpf extends ValueObject<string> {
       );
     }
 
-    const allDigitsEquals = /^\d{1}(\d)\1{10}$/.test(this.value);
+    const allDigitsEquals = /^\d(\d)\1{10}$/.test(this.value);
     if (allDigitsEquals) {
       throw new InvalidCpfError('CPF must have at least two different digits');
     }
