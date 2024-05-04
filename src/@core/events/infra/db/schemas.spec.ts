@@ -1,7 +1,7 @@
 import { MikroORM, PostgreSqlDriver } from '@mikro-orm/postgresql';
 import { CustomerSchema, PartnerSchema } from './schemas';
 import { Partner } from 'src/@core/events/domain/entities/partner.entity';
-import { Customer } from 'src/@core/events/domain/entities/cutomer.entity';
+import { Customer } from 'src/@core/events/domain/entities/customer.entity';
 
 test('deve criar um partner', async () => {
   const orm = await MikroORM.init<PostgreSqlDriver>({

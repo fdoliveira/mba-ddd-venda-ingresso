@@ -5,7 +5,7 @@ import {
   MyCollectionFactory,
 } from '../../../common/domain/my-collection';
 import { PartnerId } from './partner.entity';
-import { AggregateRoot } from 'src/@core/common/domain/aggragate-root';
+import { AggregateRoot } from 'src/@core/common/domain/aggregate-root';
 import { EventSection, EventSectionId } from './event-section.entity';
 import { EventSpotId } from './event-spot.entity';
 // import { EventCreated } from '../events/domain-events/event-created.event';

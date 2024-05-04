@@ -1,14 +1,23 @@
-import { EntitySchema } from '@mikro-orm/core';
-import { Customer } from 'src/@core/events/domain/entities/cutomer.entity';
-import { Partner } from 'src/@core/events/domain/entities/partner.entity';
-import { CustomerIdSchemaType } from './types/customer-id.schema-type';
+import { Cascade, EntitySchema } from '@mikro-orm/core';
+import { Partner } from '../../domain/entities/partner.entity';
 import { PartnerIdSchemaType } from './types/partner-id.schema-type';
+import { Customer } from '../../domain/entities/customer.entity';
+import { CustomerIdSchemaType } from './types/customer-id.schema-type';
 import { CpfSchemaType } from './types/cpf.schema-type';
+import { EventIdSchemaType } from './types/event-id.schema-type';
+import { EventSection } from '../../domain/entities/event-section.entity';
+import { EventSectionIdSchemaType } from './types/event-section-id.schema-type';
+import { EventSpot } from '../../domain/entities/event-spot.entity';
+import { EventSpotIdSchemaType } from './types/event-spot-id.schema-type';
+import { Event } from '../../domain/entities/event.entity';
+import { SpotReservation } from '../../domain/entities/spot-reservation.entity';
+import { Order, OrderStatus } from '../../domain/entities/order.entity';
+import { OrderIdSchemaType } from './types/order-id.schema-type';
 
 export const PartnerSchema = new EntitySchema<Partner>({
   class: Partner,
   properties: {
-    id: { type: PartnerIdSchemaType, primary: true },
+    id: { primary: true, customType: new PartnerIdSchemaType() },
     name: { type: 'string', length: 255 },
   },
 });
@@ -17,13 +26,14 @@ export const CustomerSchema = new EntitySchema<Customer>({
   class: Customer,
   uniques: [{ properties: ['cpf'] }],
   properties: {
-    id: { type: CustomerIdSchemaType, primary: true },
-    cpf: { type: CpfSchemaType },
+    id: {
+      customType: new CustomerIdSchemaType(),
+      primary: true,
+    },
+    cpf: { customType: new CpfSchemaType() },
     name: { type: 'string', length: 255 },
   },
 });
-
-/*
 
 export const EventSchema = new EntitySchema<Event>({
   class: Event,
@@ -155,5 +165,3 @@ export const OrderSchema = new EntitySchema<Order>({
     },
   },
 });
-
-*/

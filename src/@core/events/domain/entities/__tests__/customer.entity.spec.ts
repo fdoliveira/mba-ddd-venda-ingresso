@@ -1,5 +1,5 @@
 import Cpf from 'src/@core/common/domain/value-object/cpf.vo';
-import { Customer, CustomerId } from '../cutomer.entity';
+import { Customer, CustomerId } from '../customer.entity';
 
 test('deve criar um cliente', () => {
   const customer = Customer.create({

@@ -1,4 +1,4 @@
-import { AggregateRoot } from './aggragate-root';
+import { AggregateRoot } from './aggregate-root';
 
 export interface IRepository<E extends AggregateRoot> {
   add(entity: E): Promise<void>;

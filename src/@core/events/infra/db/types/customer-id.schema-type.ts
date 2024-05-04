@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Type, Platform, EntityProperty } from '@mikro-orm/core';
-import { CustomerId } from 'src/@core/events/domain/entities/cutomer.entity';
+import { CustomerId } from 'src/@core/events/domain/entities/customer.entity';
 
 export class CustomerIdSchemaType extends Type<CustomerId, string> {
   convertToDatabaseValue(

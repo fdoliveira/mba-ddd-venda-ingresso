@@ -1,5 +1,5 @@
 import { MikroORM, PostgreSqlDriver } from '@mikro-orm/postgresql';
-import { Customer } from 'src/@core/events/domain/entities/cutomer.entity';
+import { Customer } from 'src/@core/events/domain/entities/customer.entity';
 import { CustomerPgsqlRepository } from '../customer-pgsql.repository';
 import { CustomerSchema } from '../../schemas';
 

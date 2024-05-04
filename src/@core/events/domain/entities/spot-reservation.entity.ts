@@ -1,5 +1,5 @@
-import { AggregateRoot } from 'src/@core/common/domain/aggragate-root';
-import { CustomerId } from './cutomer.entity';
+import { AggregateRoot } from 'src/@core/common/domain/aggregate-root';
+import { CustomerId } from './customer.entity';
 import { EventSpotId } from './event-spot.entity';
 
 export type SpotReservationCreateCommand = {

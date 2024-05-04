@@ -1,4 +1,4 @@
-import { AggregateRoot } from 'src/@core/common/domain/aggragate-root';
+import { AggregateRoot } from 'src/@core/common/domain/aggregate-root';
 import Cpf from 'src/@core/common/domain/value-object/cpf.vo';
 import Uuid from 'src/@core/common/domain/value-object/uuid.vo';
 

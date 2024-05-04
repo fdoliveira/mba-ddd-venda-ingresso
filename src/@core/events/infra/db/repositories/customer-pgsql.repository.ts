@@ -1,6 +1,6 @@
 import { EntityManager } from '@mikro-orm/core';
 import { ICustomerRepository } from '../../../domain/repositories/customer-repository.interface';
-import { Customer, CustomerId } from '../../../domain/entities/cutomer.entity';
+import { Customer, CustomerId } from '../../../domain/entities/customer.entity';
 
 export class CustomerPgsqlRepository implements ICustomerRepository {
   constructor(private entityManager: EntityManager) {}
