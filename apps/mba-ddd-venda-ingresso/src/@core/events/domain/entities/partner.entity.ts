@@ -1,6 +1,8 @@
-import Uuid from 'src/@core/common/domain/value-object/uuid.vo';
+import Uuid from '../../../common/domain/value-object/uuid.vo';
+import { AggregateRoot } from '../../../common/domain/aggregate-root';
 import { Event } from './event.entity';
-import { AggregateRoot } from 'src/@core/common/domain/aggregate-root';
+import { PartnerCreated } from '../events/domain-events/partner-created.event';
+import { PartnerChangedName } from '../events/domain-events/partner-changed-name.event';
 
 export class PartnerId extends Uuid {}
 
@@ -33,7 +35,7 @@ export class Partner extends AggregateRoot {
     const partner = new Partner({
       name: command.name,
     });
-    // partner.addEvent(new PartnerCreated(partner.id, partner.name));
+    partner.addEvent(new PartnerCreated(partner.id, partner.name));
     return partner;
   }
 
@@ -46,7 +48,7 @@ export class Partner extends AggregateRoot {
 
   changeName(name: string) {
     this.name = name;
-    // this.addEvent(new PartnerChangedName(this.id, this.name));
+    this.addEvent(new PartnerChangedName(this.id, this.name));
   }
 
   toJSON() {

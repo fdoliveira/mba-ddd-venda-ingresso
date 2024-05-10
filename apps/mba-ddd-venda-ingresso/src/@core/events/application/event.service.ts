@@ -1,8 +1,8 @@
-import { IUnitOfWork } from 'src/@core/common/application/unit-of-work.interface';
-import { IEventRepository } from '../domain/repositories/event-repository.interface';
-import { IPartnerRepository } from '../domain/repositories/partner-repository.interface';
+import { IUnitOfWork } from '../../common/application/unit-of-work.interface';
 import { EventSectionId } from '../domain/entities/event-section.entity';
 import { EventSpotId } from '../domain/entities/event-spot.entity';
+import { IEventRepository } from '../domain/repositories/event-repository.interface';
+import { IPartnerRepository } from '../domain/repositories/partner-repository.interface';
 
 export class EventService {
   constructor(
@@ -11,17 +11,12 @@ export class EventService {
     private uow: IUnitOfWork,
   ) {}
 
-  list() {
+  findEvents() {
     return this.eventRepo.findAll();
   }
 
   async findSections(event_id: string) {
     const event = await this.eventRepo.findById(event_id);
-
-    if (!event) {
-      throw new Error('Event not found');
-    }
-
     return event.sections;
   }
 
@@ -32,15 +27,14 @@ export class EventService {
     partner_id: string;
   }) {
     const partner = await this.partnerRepo.findById(input.partner_id);
-
     if (!partner) {
       throw new Error('Partner not found');
     }
 
     const event = partner.initEvent({
       name: input.name,
-      description: input.description,
       date: input.date,
+      description: input.description,
     });
 
     this.eventRepo.add(event);
